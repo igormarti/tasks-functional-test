@@ -39,7 +39,7 @@ public class TasksTest {
 			// click button save
 			driver.findElement(By.id("saveButton")).click();
 			// show success message
-			var message = driver.findElement(By.id("message")).getText();
+			String message = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Success!", message);
 		} finally {
 			// close browser
@@ -60,7 +60,7 @@ public class TasksTest {
 			// click button save
 			driver.findElement(By.id("saveButton")).click();
 			// show success message
-			var message = driver.findElement(By.id("message")).getText();
+			String message = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Fill the task description", message);
 		} finally {
 			// close browser
@@ -81,7 +81,7 @@ public class TasksTest {
 			// click button save
 			driver.findElement(By.id("saveButton")).click();
 			// show success message
-			var message = driver.findElement(By.id("message")).getText();
+			String message = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Fill the due date", message);
 		} finally {
 			// close browser
@@ -104,7 +104,7 @@ public class TasksTest {
 			// click button save
 			driver.findElement(By.id("saveButton")).click();
 			// show success message
-			var message = driver.findElement(By.id("message")).getText();
+			String message = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Due date must not be in past", message);
 		} finally {
 			// close browser
