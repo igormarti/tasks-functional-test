@@ -1,5 +1,7 @@
 package br.im.imrocha.tasks.functional;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
@@ -8,27 +10,25 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
 
 	
-	public WebDriver initTest() {
-		WebDriver driver = new ChromeDriver();
+	public WebDriver initTest() throws MalformedURLException {
+//		WebDriver driver = new ChromeDriver();
+		WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
 		// open page tasks list
-		driver.navigate().to("http://localhost:8081/tasks/");
-		// wait 3 seconds
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		
+		driver.navigate().to("http://192.168.0.34:8081/tasks/");
 		return driver;
 	}
 	
 	@Test
-	public void shouldSaveTaskWithSuccess() {
-		WebDriver driver = new ChromeDriver();
+	public void shouldSaveTaskWithSuccess() throws MalformedURLException {
+		WebDriver driver = initTest();
+		
 		try {
-			// open page tasks list
-			driver.navigate().to("http://localhost:8081/tasks/");
 			// wait 3 seconds
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			// click button add task
@@ -48,11 +48,13 @@ public class TasksTest {
 	}
 	
 	@Test
-	public void shouldNotSaveTaskWithOutDescription() {
+	public void shouldNotSaveTaskWithOutDescription() throws MalformedURLException {
 		
 		WebDriver driver = initTest();
 		
 		try {
+			// wait 3 seconds
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			// click button add task
 			driver.findElement(By.id("addTodo")).click();
 			// fill due date field
@@ -69,11 +71,13 @@ public class TasksTest {
 	}
 	
 	@Test
-	public void shouldNotSaveTaskWithOutDueDate() {
+	public void shouldNotSaveTaskWithOutDueDate() throws MalformedURLException {
 		
 		WebDriver driver = initTest();
 		
 		try {
+			// wait 3 seconds
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			// click button add task
 			driver.findElement(By.id("addTodo")).click();
 			// fill description field
@@ -90,11 +94,13 @@ public class TasksTest {
 	}
 	
 	@Test
-	public void shouldNotSaveTaskWithPastDate() {
+	public void shouldNotSaveTaskWithPastDate() throws MalformedURLException {
 		
 		WebDriver driver = initTest();
 		
 		try {
+			// wait 3 seconds
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			// click button add task
 			driver.findElement(By.id("addTodo")).click();
 			// fill description field
