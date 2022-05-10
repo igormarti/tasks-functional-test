@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
@@ -18,7 +18,7 @@ public class TasksTest {
 	
 	public WebDriver initTest() throws MalformedURLException {
 //		WebDriver driver = new ChromeDriver();
-		WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
+		WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), new ChromeOptions());
 		// open page tasks list
 		driver.navigate().to("http://192.168.0.34:8081/tasks/");
 		return driver;
