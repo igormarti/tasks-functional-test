@@ -32,7 +32,7 @@ public class HealthCheckIT {
 		WebDriver driver = initTest();
 		try {
 			// wait 3 seconds
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			// check if application is run to the get version in the element
 			appDeployed = driver.findElement(By.id("version")).isDisplayed();
 			// test if the element exists
