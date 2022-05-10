@@ -11,15 +11,17 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ImmutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
 
 	
 	public WebDriver initTest() throws MalformedURLException {
-//		WebDriver driver = new ChromeDriver();star
-		ImmutableCapabilities capabilities = new ImmutableCapabilities("browserName", "chrome");
-		WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444"),capabilities);
+		WebDriver driver = new ChromeDriver();
+		// this line is for use in real scenary with hub and nodes.
+		// ImmutableCapabilities capabilities = new ImmutableCapabilities("browserName", "chrome");
+		// WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444"),capabilities);
 		// open page tasks list
 		driver.navigate().to("http://192.168.0.34:8081/tasks/");
 		return driver;
