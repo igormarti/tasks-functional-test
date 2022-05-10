@@ -9,16 +9,17 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ImmutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
 
 	
 	public WebDriver initTest() throws MalformedURLException {
-//		WebDriver driver = new ChromeDriver();
-		WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), new ChromeOptions());
+//		WebDriver driver = new ChromeDriver();star
+		ImmutableCapabilities capabilities = new ImmutableCapabilities("browserName", "chrome");
+		WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444"),capabilities);
 		// open page tasks list
 		driver.navigate().to("http://192.168.0.34:8081/tasks/");
 		return driver;
