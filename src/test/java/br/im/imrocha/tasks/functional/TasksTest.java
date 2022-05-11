@@ -120,5 +120,33 @@ public class TasksTest {
 			driver.quit();
 		}	
 	}
+
+	@Test
+	public void shouldRemoveTaskWithSuccess() throws MalformedURLException {
+		WebDriver driver = initTest();
+		
+		try {
+			// wait 3 seconds
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			// click button add task
+			driver.findElement(By.id("addTodo")).click();
+			// fill fields
+			driver.findElement(By.id("task")).sendKeys("task test");
+			driver.findElement(By.id("dueDate")).sendKeys(LocalDate.now().plusWeeks(3).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+			// click button save
+			driver.findElement(By.id("saveButton")).click();
+			// show success message
+			String message = driver.findElement(By.id("message")).getText();
+			Assert.assertEquals("Success!", message);
+
+			driver.findElement(By.xpath("//a[@class='btn btn-outline-danger btn-sm']")).click();
+
+			message = driver.findElement(By.id("message")).getText();
+			Assert.assertEquals("Success!", message);
+		} finally {
+			// close browser
+			driver.quit();
+		}
+	}
 	
 }
